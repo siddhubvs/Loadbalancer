@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Load Balancer Demo</title>
+  <Style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.output-container {
+  margin-top: 20px;
+}
+
+pre {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+  </Style>
+</head>
+<body>
+  <div class="container">
+    <h1>Load Balancer Demo</h1>
+  
+    <button id="getGreetingBtn">Get Greeting</button>
+  
+    <div class="output-container">
+      <pre id="greetingOutput"></pre>
+      <pre id="statsOutput"></pre>
+    </div>
+  </div>
+
+  <script>
+    const getGreetingBtn = document.getElementById('getGreetingBtn');
+    const greetingOutput = document.getElementById('greetingOutput');
+    const statsOutput = document.getElementById('statsOutput');
+
+    getGreetingBtn.addEventListener('click', async () => {
+      const response = await fetch('/api/v1/hello');
+      const data = await response.json();
+      const greetingOutputText = JSON.stringify(data, null, 2);
+
+      greetingOutput.textContent = greetingOutputText;
+
+      const statsResponse = await fetch('/worker/stats');
+      const statsData = await statsResponse.json();
+      const statsOutputText = JSON.stringify(statsData, null, 2);
+
+      statsOutput.textContent = `\n\nStatistics:\n${statsOutputText}`;
+    });
+  </script> 
+</body>
+</html>

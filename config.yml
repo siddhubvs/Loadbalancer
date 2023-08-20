@@ -1,0 +1,8 @@
+workers:
+  - id: worker1
+  - id: worker2
+  - id: worker3
+pool: 20
+stats-dir: /tmp/stats
+avg-delay: 0.5
+failure: 12

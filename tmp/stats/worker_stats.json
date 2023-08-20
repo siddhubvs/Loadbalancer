@@ -1,0 +1,26 @@
+{
+  "TotalRequests": 13,
+  "WorkersStats": [
+    {
+      "WorkerName": "worker1",
+      "Success Requests": 5,
+      "Failed Requests": 0,
+      "Average Request Time": "0.5 sec",
+      "Total Requests": 5
+    },
+    {
+      "WorkerName": "worker2",
+      "Success Requests": 4,
+      "Failed Requests": 0,
+      "Average Request Time": "0.5 sec",
+      "Total Requests": 4
+    },
+    {
+      "WorkerName": "worker3",
+      "Success Requests": 2,
+      "Failed Requests": 2,
+      "Average Request Time": "0.25 sec",
+      "Total Requests": 4
+    }
+  ]
+}
