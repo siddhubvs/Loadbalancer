@@ -30,8 +30,12 @@ try {
   app.get('/api/v1/hello', async (req, res) => {
     const worker = loadBalancer.getWorker();
     try {
-      await worker.processRequest();
-      res.json({ message: 'hello-world' });
+      const result=await worker.processRequest();
+      if (result.status === 'success') {
+        res.json({ message: 'hello-world' });
+      } else {
+        res.status(500).json({ error: 'Request failed' });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
