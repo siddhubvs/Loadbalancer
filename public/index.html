@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Load Balancer Demo</title>
   <Style>
-    body {
+body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -48,31 +48,31 @@ pre {
   font-size: 14px;
 }
 
-  </Style>
+</Style>
 </head>
 <body>
   <div class="container">
-    <h1>Load Balancer Demo</h1>
+    <h1>Automatic scaling Load Balancer</h1>
   
-    <button id="getGreetingBtn">Get Greeting</button>
+    <button id="getMessage">Get Message</button>
   
     <div class="output-container">
-      <pre id="greetingOutput"></pre>
+      <pre id="messageOutput"></pre>
       <pre id="statsOutput"></pre>
     </div>
   </div>
 
   <script>
-    const getGreetingBtn = document.getElementById('getGreetingBtn');
-    const greetingOutput = document.getElementById('greetingOutput');
+    const getMessageBtn = document.getElementById('getMessage');
+    const messageOutput = document.getElementById('messageOutput');
     const statsOutput = document.getElementById('statsOutput');
 
-    getGreetingBtn.addEventListener('click', async () => {
+    getMessageBtn.addEventListener('click', async () => {
       const response = await fetch('/api/v1/hello');
       const data = await response.json();
-      const greetingOutputText = JSON.stringify(data, null, 2);
+      const messageOutputText = JSON.stringify(data, null, 2);
 
-      greetingOutput.textContent = greetingOutputText;
+      messageOutput.textContent = messageOutputText;
 
       const statsResponse = await fetch('/worker/stats');
       const statsData = await statsResponse.json();
